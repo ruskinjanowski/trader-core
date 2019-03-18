@@ -6,8 +6,7 @@ import java.util.List;
 import org.knowm.xchange.dto.Order.OrderType;
 
 import com.trader.controller.api.Api;
-
-import arbtrader.model.Order;
+import com.trader.model.Order;
 
 public class SimulatedOrderPlacer implements IOrderPlacer {
 	public final List<Order> placed = new ArrayList<>();

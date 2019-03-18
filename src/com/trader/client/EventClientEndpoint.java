@@ -19,12 +19,10 @@ import javax.websocket.Session;
 import org.glassfish.tyrus.client.ClientManager;
 
 import com.google.gson.Gson;
-
-import arbtrader.controller.MarketEvents;
-import arbtrader.controller.TraderURIs;
-import arbtrader.credentials.EMarketType;
-import arbtrader.model.Events;
-import arbtrader.model.OrderListenRequest;
+import com.trader.definitions.TraderURIs;
+import com.trader.model.EMarketType;
+import com.trader.model.Events;
+import com.trader.model.OrderListenRequest;
 
 @ClientEndpoint
 public class EventClientEndpoint {

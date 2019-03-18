@@ -17,11 +17,10 @@ import org.knowm.xchange.service.account.AccountService;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 import org.knowm.xchange.service.trade.TradeService;
 
-import arbtrader.credentials.AccountDetails;
-import arbtrader.credentials.AccountDetails.LunoDetails;
-import arbtrader.credentials.EMarketType;
-import arbtrader.credentials.TraderFolders;
-import arbtrader.credentials.TraderFolders.ProgramName;
+import com.trader.controller.api.AccountDetails.LunoDetails;
+import com.trader.definitions.TraderFolders;
+import com.trader.definitions.TraderFolders.ProgramName;
+import com.trader.model.EMarketType;
 
 public class Api {
 

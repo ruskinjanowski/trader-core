@@ -1,6 +1,6 @@
 package com.trader.level;
 
-import arbtrader.model.Order;
+import com.trader.model.Order;
 
 public class CancelResult {
 

@@ -1,6 +1,5 @@
 package com.trader.utility;
 
-import java.io.File;
 import java.text.DecimalFormat;
 
 import org.knowm.xchange.dto.Order.OrderType;
@@ -35,14 +34,6 @@ public class Utility {
 		return eq;
 	}
 
-	public static File getCommonFile(String name) {
-		File f1 = new File(new File(name).getAbsolutePath());
-		File root = f1.getParentFile().getParentFile();
-		File storageFolder = new File(root, "marketdata");
-		File storagefile = new File(storageFolder, name);
-		return storagefile;
-	}
-
 	public static OrderType getType(double volume) {
 
 		if (volume > 0) {
@@ -58,8 +49,4 @@ public class Utility {
 		return type.equals(OrderType.BID) ? volume : -volume;
 	}
 
-	public static void main(String[] args) {
-
-		System.out.println(isEqualVolume(0, -0.0002));
-	}
 }

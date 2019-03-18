@@ -11,11 +11,10 @@ import org.knowm.xchange.luno.service.LunoTradeService;
 import com.trader.client.EventClientEndpoint;
 import com.trader.controller.api.Api;
 import com.trader.level.CancelResult.CancelStatus;
-import com.trader.single.LunoBTCManager;
-
-import arbtrader.credentials.EMarketType;
-import arbtrader.model.Order;
-import arbtrader.model.OrderListenRequest;
+import com.trader.luno.LunoBTCManager;
+import com.trader.model.EMarketType;
+import com.trader.model.Order;
+import com.trader.model.OrderListenRequest;
 
 public class LunoOrderPlacer implements IOrderPlacer {
 	private final EMarketType market;

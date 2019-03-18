@@ -2,9 +2,9 @@ package com.trader.level;
 
 import org.knowm.xchange.dto.Order.OrderType;
 
-import arbtrader.controller.MarketEvents;
-import arbtrader.credentials.EMarketType;
-import arbtrader.model.SpreadChanged;
+import com.trader.client.MarketEvents;
+import com.trader.model.EMarketType;
+import com.trader.model.SpreadChanged;
 
 public class SomeSpread extends SpreadPricing {
 

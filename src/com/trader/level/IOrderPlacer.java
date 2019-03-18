@@ -2,7 +2,7 @@ package com.trader.level;
 
 import org.knowm.xchange.dto.Order.OrderType;
 
-import arbtrader.model.Order;
+import com.trader.model.Order;
 
 public interface IOrderPlacer {
 	// enum CancelResult {

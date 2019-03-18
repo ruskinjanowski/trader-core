@@ -14,7 +14,7 @@ import java.util.Scanner;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.Order.OrderType;
 
-import com.trader.single.OrderTracker;
+import com.trader.luno.OrderTracker;
 
 public class Transaction {
 
