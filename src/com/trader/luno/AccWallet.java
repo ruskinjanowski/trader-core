@@ -23,15 +23,9 @@ public class AccWallet {
 	 */
 	Map<String, OrderTracker> orders = new HashMap<>();
 
-	// public AccWallet(double btc, double counter) {
-	// super();
-	// this.btc = btc;
-	// this.counter = counter;
-	// }
-
 	public AccWallet(EMarketType market) {
-		btc = Math.floor(AccountData.getBalance(market, Currency.BTC, 1) * 1000) / 1000;
-		counter = Math.floor(AccountData.getBalance(market, market.getCounterCurrency(), 1));
+		btc = AccountData.getBalance(market, market.pair.base, 1);
+		counter = AccountData.getBalance(market, market.pair.counter, 1);
 		avaibleCounter = counter;
 		availableBTC = btc;
 		System.out

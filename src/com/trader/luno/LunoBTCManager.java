@@ -12,9 +12,6 @@ import org.knowm.xchange.dto.Order.OrderType;
 import com.trader.client.MarketEvents;
 import com.trader.client.MarketEvents.IOrderListener;
 import com.trader.client.MarketEvents.ISpreadListener;
-import com.trader.level.LunoOrderPlacer;
-import com.trader.level.SomeSpread;
-import com.trader.level.SpreadPricing;
 import com.trader.model.EMarketType;
 import com.trader.model.Order;
 import com.trader.model.OrderCancelled;
@@ -154,7 +151,7 @@ public class LunoBTCManager implements IOrderListener, ISpreadListener {
 			return;
 		}
 		System.out.println(getMilliTime() + " Cancelling: " + t.o);
-		com.trader.level.CancelResult res = null;
+		com.trader.luno.CancelResult res = null;
 		try {
 			res = placer.cancelOrder(t.o);
 		} catch (Exception e) {
