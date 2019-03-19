@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
 import java.util.logging.Logger;
 
 import javax.websocket.ClientEndpoint;
@@ -27,13 +26,8 @@ import com.trader.model.OrderListenRequest;
 @ClientEndpoint
 public class EventClientEndpoint {
 
-	private static CountDownLatch latch;
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	private static final Gson gson = new Gson();
-
-	// private static final Set<Session> sessionsZARBTC = new HashSet<>();
-	// private static final Set<Session> sessionsEURBTC = new HashSet<>();
-	// private static final Set<Session> sessionsNGNBTC = new HashSet<>();
 
 	private static final Map<EMarketType, Set<Session>> sessionMap = new HashMap<>();
 
@@ -45,7 +39,7 @@ public class EventClientEndpoint {
 
 	/**
 	 * When a new instance of this class gets made, what this is at that time will
-	 * get save and events passed on to that.
+	 * get saved and events passed on to that.
 	 */
 	private static EMarketType proxy = EMarketType.ZAR_BTC;
 
@@ -78,9 +72,14 @@ public class EventClientEndpoint {
 	public void onClose(Session session, CloseReason closeReason) {
 		logger.info(String.format("Session %s close because of %s", session.getId(), closeReason));
 		getSessions().remove(session);
-		latch.countDown();
 	}
 
+	/**
+	 * Request the event server to receive events for an order.
+	 * 
+	 * @param olr the order to receive events for
+	 * @param market the market on which the order was placed
+	 */
 	public static void sendListenRequest(OrderListenRequest olr, EMarketType market) {
 		Set<Session> sessions = sessionMap.get(market);
 		for (Session session : sessions) {
@@ -106,15 +105,6 @@ public class EventClientEndpoint {
 
 		} catch (DeploymentException e) {
 			throw new RuntimeException(e);
-		}
-	}
-
-	public static void waitIndefinitely() {
-		latch = new CountDownLatch(1);
-		try {
-			latch.await();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 }

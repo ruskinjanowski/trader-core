@@ -25,10 +25,6 @@ import com.trader.model.EMarketType;
 public class Api {
 
 	public static final CurrencyPair BTC_NGN = new CurrencyPair(Currency.BTC, Currency.NGN);
-	// luno
-	// public static final String PAIR_XBTZAR = "XBTZAR";
-	// public static final int MIN_TRADE_ZAR = 100;
-	// public static final double MIN_TRADE_BTC = 0.001;
 
 	private static final Map<EMarketType, RateLimiter> mapLimiter = new HashMap<>();
 	private static final Map<EMarketType, Exchange> mapExchanges = new HashMap<>();
@@ -67,17 +63,17 @@ public class Api {
 	}
 
 	public static MarketDataService getMarketDataService(EMarketType marketType) {
-		mapLimiter.get(marketType).rateLimitLuno();
+		mapLimiter.get(marketType).rateLimit();
 		return mapExchanges.get(marketType).getMarketDataService();
 	}
 
 	public static TradeService getTradeService(EMarketType marketType) {
-		mapLimiter.get(marketType).rateLimitLuno();
+		mapLimiter.get(marketType).rateLimit();
 		return mapExchanges.get(marketType).getTradeService();
 	}
 
 	public static AccountService getAccountService(EMarketType marketType) {
-		mapLimiter.get(marketType).rateLimitLuno();
+		mapLimiter.get(marketType).rateLimit();
 		return mapExchanges.get(marketType).getAccountService();
 	}
 

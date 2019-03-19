@@ -1,6 +1,7 @@
 package com.trader.utility;
 
 import java.text.DecimalFormat;
+import java.util.concurrent.CountDownLatch;
 
 import org.knowm.xchange.dto.Order.OrderType;
 
@@ -47,6 +48,15 @@ public class Utility {
 
 	public static double volumeVector(double volume, OrderType type) {
 		return type.equals(OrderType.BID) ? volume : -volume;
+	}
+
+	public static void waitIndefinitely() {
+		CountDownLatch latch = new CountDownLatch(1);
+		try {
+			latch.await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

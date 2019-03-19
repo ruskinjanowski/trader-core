@@ -1,13 +1,13 @@
 package com.trader.model;
 
-public class SpreadChanged {
+public class Spread {
 
 	/** ASK price */
 	public final double priceAsk;
 	/** BID price */
 	public final double priceBid;
 
-	public SpreadChanged(double priceAsk, double priceBid) {
+	public Spread(double priceAsk, double priceBid) {
 		this.priceAsk = priceAsk;
 		this.priceBid = priceBid;
 		if (priceAsk <= priceBid) {
@@ -35,7 +35,7 @@ public class SpreadChanged {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SpreadChanged other = (SpreadChanged) obj;
+		Spread other = (Spread) obj;
 		if (Double.doubleToLongBits(priceAsk) != Double.doubleToLongBits(other.priceAsk))
 			return false;
 		if (Double.doubleToLongBits(priceBid) != Double.doubleToLongBits(other.priceBid))

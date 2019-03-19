@@ -13,7 +13,7 @@ import com.trader.api.Api;
 import com.trader.api.FiatCurrencies;
 import com.trader.client.MarketEvents;
 import com.trader.model.EMarketType;
-import com.trader.model.SpreadChanged;
+import com.trader.model.Spread;
 
 /**
  * Current Exchange rates on various exchanges. Everything should be static as
@@ -89,7 +89,7 @@ public class MarketData {
 	}
 
 	public synchronized MarketPrice getZARrBTC(double lag_min) {
-		SpreadChanged spread = MarketEvents.getSpread(EMarketType.ZAR_BTC);
+		Spread spread = MarketEvents.getSpread(EMarketType.ZAR_BTC);
 		if (spread != null) {
 			ZARrBTC = new MarketPrice(spread.priceBid, spread.priceAsk, new Date());
 		} else if (ZARrBTC == null || ZARrBTC.olderThan(lag_min)) {

@@ -12,18 +12,9 @@ import com.trader.model.EMarketType;
 import com.trader.model.Events;
 import com.trader.model.Order;
 import com.trader.model.OrderCancelled;
-import com.trader.model.SpreadChanged;
+import com.trader.model.Spread;
 
 public class MarketEvents {
-
-	/**
-	 * Streamed data from the Luno ZAR/BTC exchange goes through this object.
-	 */
-	// public static final MarketEvents ZAR = new MarketEvents();
-	//
-	// public static final MarketEvents EUR = new MarketEvents();
-	//
-	// public static final MarketEvents NGN = new MarketEvents();
 
 	private static final Map<EMarketType, MarketEvents> me = new HashMap<>();
 	static {
@@ -32,11 +23,17 @@ public class MarketEvents {
 		createMarketEvents(EMarketType.NGN_BTC);
 	}
 
+	/**
+	 * SpreadListeners which will get notified first.
+	 */
 	private final List<ISpreadListener> listenersSpreadHigh = new ArrayList<>();
+	/**
+	 * SpreadListeners which will get notified second.
+	 */
 	private final List<ISpreadListener> listenersSpreadLow = new ArrayList<>();
 	private final List<IOrderListener> listenersOrder = new ArrayList<>();
 
-	private SpreadChanged spread;
+	private Spread spread;
 
 	final TaskQueue taskQueue = new TaskQueue();
 	public final EMarketType market;
@@ -63,11 +60,11 @@ public class MarketEvents {
 		return me.get(t);
 	}
 
-	public static SpreadChanged getSpread(EMarketType t) {
+	public static Spread getSpread(EMarketType t) {
 		return me.get(t).spread;
 	}
 
-	public SpreadChanged getSpread() {
+	public Spread getSpread() {
 		return spread;
 	}
 
@@ -97,7 +94,7 @@ public class MarketEvents {
 		listenersOrder.remove(l);
 	}
 
-	Set<SpreadChanged> s = new HashSet<>();
+	Set<Spread> s = new HashSet<>();
 
 	public void processEvents(Events e) {
 		System.out.println(new Date() + " " + e);

@@ -4,7 +4,7 @@ import org.knowm.xchange.dto.Order.OrderType;
 
 import com.trader.client.MarketEvents;
 import com.trader.model.EMarketType;
-import com.trader.model.SpreadChanged;
+import com.trader.model.Spread;
 
 public class SomeSpread extends SpreadPricing {
 
@@ -21,7 +21,7 @@ public class SomeSpread extends SpreadPricing {
 
 	@Override
 	public double getPrice(OrderType type) {
-		SpreadChanged spread = MarketEvents.getSpread(market);
+		Spread spread = MarketEvents.getSpread(market);
 
 		if (spread.priceAsk - spread.priceBid > 2 * inc) {
 			if (type.equals(OrderType.ASK)) {
@@ -41,7 +41,7 @@ public class SomeSpread extends SpreadPricing {
 
 	@Override
 	public boolean priceCorrect(OrderType type, double price) {
-		SpreadChanged spread = MarketEvents.getSpread(market);
+		Spread spread = MarketEvents.getSpread(market);
 		boolean b = price <= spread.priceAsk && price >= spread.priceBid;
 		return b;
 	}

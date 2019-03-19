@@ -4,7 +4,7 @@ import org.knowm.xchange.dto.Order.OrderType;
 
 import com.trader.client.MarketEvents;
 import com.trader.model.EMarketType;
-import com.trader.model.SpreadChanged;
+import com.trader.model.Spread;
 
 public class NoSpread extends SpreadPricing {
 	private final EMarketType market;
@@ -19,7 +19,7 @@ public class NoSpread extends SpreadPricing {
 	@Override
 	public double getPrice(OrderType type) {
 
-		SpreadChanged spread = MarketEvents.getSpread(market);
+		Spread spread = MarketEvents.getSpread(market);
 		if (type.equals(OrderType.ASK)) {
 			return spread.priceBid + minSpread;
 		} else {

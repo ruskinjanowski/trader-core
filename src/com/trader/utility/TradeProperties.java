@@ -5,10 +5,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * 
+ * Utility class which can be extended to load a .properties file.
+ *
+ */
 public abstract class TradeProperties {
-
-	// public static final TradeProperties INSTANCE = new TradeProperties(new
-	// File("trading.properties"));
 
 	protected final Properties props = new Properties();
 

@@ -31,6 +31,12 @@ import si.mazi.rescu.BasicAuthCredentials;
 import si.mazi.rescu.ClientConfig;
 import si.mazi.rescu.RestProxyFactory;
 
+/**
+ * 
+ * Add the postOnly parameter in the postLimitOrder(...) method as you never
+ * want to pay fees.
+ *
+ */
 public class LunoAPIImpl implements LunoAPI {
 
 	private static final Set<String> VALID_TYPES = new HashSet<String>(

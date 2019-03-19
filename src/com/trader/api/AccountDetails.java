@@ -16,17 +16,11 @@ public class AccountDetails {
 
 	private final Properties props = new Properties();
 
-	public void loadAccountDetails(String name) {
-
-	}
-
 	/**
 	 * 
-	 * @param f
-	 *            accounts.properties file
+	 * @param f accounts.properties file
 	 */
 	public AccountDetails(File f) {
-		// File f = new File(TraderFolders.CONFIG, "accounts.properties");
 		System.out.println("Loading properties file: " + f.getAbsolutePath());
 
 		try {

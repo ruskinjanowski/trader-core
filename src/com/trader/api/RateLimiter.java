@@ -3,6 +3,12 @@ package com.trader.api;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * Ensure that there are never more than n calls to rateLimit() per given period
+ * by blocking the rateLimit() method for the required amount of time.
+ *
+ */
 public class RateLimiter {
 
 	List<Long> prevTimes = new ArrayList<>();
@@ -10,10 +16,7 @@ public class RateLimiter {
 	int calls = 4;
 	int period_ms = 5100;
 
-	int cal = 0;
-
-	public synchronized void rateLimitLuno() {
-		cal++;
+	public synchronized void rateLimit() {
 
 		long now = System.currentTimeMillis();
 
@@ -32,10 +35,8 @@ public class RateLimiter {
 					oldestInPeriod = l;
 				}
 			}
-
 		}
 		prevTimes = inPeriod;
-		System.out.println(cal + " " + prevTimes.size());
 
 		if (prevTimes.size() < calls) {
 			return;
@@ -54,29 +55,29 @@ public class RateLimiter {
 
 	public static void main(String[] args) throws InterruptedException {
 		RateLimiter rl = new RateLimiter();
-		rl.rateLimitLuno();
+		rl.rateLimit();
 
-		rl.rateLimitLuno();
+		rl.rateLimit();
 
-		rl.rateLimitLuno();
+		rl.rateLimit();
 		System.out.println("sleep 1s");
 		Thread.sleep(1000);
-		rl.rateLimitLuno();
+		rl.rateLimit();
 		System.out.println("sleep 1s");
 		Thread.sleep(1000);
-		rl.rateLimitLuno();
+		rl.rateLimit();
 		System.out.println("sleep 1s");
 		Thread.sleep(1000);
-		rl.rateLimitLuno();
+		rl.rateLimit();
 		System.out.println("sleep 1s");
 		Thread.sleep(1000);
-		rl.rateLimitLuno();
-		rl.rateLimitLuno();
+		rl.rateLimit();
+		rl.rateLimit();
 
-		rl.rateLimitLuno();
-		rl.rateLimitLuno();
-		rl.rateLimitLuno();
-		rl.rateLimitLuno();
-		rl.rateLimitLuno();
+		rl.rateLimit();
+		rl.rateLimit();
+		rl.rateLimit();
+		rl.rateLimit();
+		rl.rateLimit();
 	}
 }

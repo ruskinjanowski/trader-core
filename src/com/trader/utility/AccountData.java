@@ -55,32 +55,4 @@ public class AccountData {
 	public static double getLunoBTC(double lag) {
 		return getBalance(EMarketType.ZAR_BTC, Currency.BTC, lag);
 	}
-	//
-	// public static PendingTransaction getLunoIncomingBTC(double volume) {
-	// updateIfNeeded(24 * 60, true, false);
-	// for (Wallet w : lunoInfo.getWallets().values()) {
-	// if (w.getBalance(Currency.BTC) != null) {
-	// String accId = w.getId();
-	// try {
-	// LunoPendingTransactions pt = Api.lunoZARTrade().pendingTransactions(accId);
-	// for (PendingTransaction t : pt.getTransactions()) {
-	// if (Utility.isEqualVolume(t.available.doubleValue(), volume)) {
-	// return t;
-	// }
-	// }
-	// return null;
-	//
-	// } catch (LunoException | IOException e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// }
-	// throw new IllegalStateException();
-	// }
-
-	public static void main(String[] args) {
-
-		getBalance(EMarketType.ZAR_BTC, Currency.USD, 1);
-
-	}
 }

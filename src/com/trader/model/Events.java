@@ -9,7 +9,7 @@ public class Events {
 	/**
 	 * The spread changed, this is the new spread.
 	 */
-	public final SpreadChanged spread;
+	public final Spread spread;
 	/**
 	 * An order of interest got fully filled.
 	 */
@@ -23,7 +23,7 @@ public class Events {
 	 */
 	public final Order placed;
 
-	public Events(SpreadChanged spread, Order fullyFilled, OrderCancelled cancelled, Order placed) {
+	public Events(Spread spread, Order fullyFilled, OrderCancelled cancelled, Order placed) {
 		super();
 		this.spread = spread;
 		this.fullyFilled = fullyFilled;
