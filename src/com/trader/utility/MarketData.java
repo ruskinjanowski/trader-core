@@ -9,9 +9,9 @@ import org.knowm.xchange.dto.marketdata.Ticker;
 import org.knowm.xchange.luno.dto.LunoException;
 import org.openexchangerates.oerjava.exceptions.UnavailableExchangeRateException;
 
+import com.trader.api.Api;
+import com.trader.api.FiatCurrencies;
 import com.trader.client.MarketEvents;
-import com.trader.controller.api.Api;
-import com.trader.controller.api.FiatCurrencies;
 import com.trader.model.EMarketType;
 import com.trader.model.SpreadChanged;
 

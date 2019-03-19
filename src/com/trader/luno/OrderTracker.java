@@ -34,10 +34,6 @@ public class OrderTracker {
 		return orderState;
 	}
 
-	public void setStatus(OrderState status) {
-		this.orderState = status;
-	}
-
 	void setOrderState(OrderState orderState) {
 		this.orderState = orderState;
 		updateTime = System.currentTimeMillis();

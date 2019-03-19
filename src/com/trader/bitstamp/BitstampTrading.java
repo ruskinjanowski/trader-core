@@ -11,7 +11,7 @@ import org.knowm.xchange.dto.Order;
 import org.knowm.xchange.dto.Order.OrderType;
 import org.knowm.xchange.dto.trade.MarketOrder;
 
-import com.trader.controller.api.Api;
+import com.trader.api.Api;
 import com.trader.definitions.TraderFolders.ProgramName;
 import com.trader.model.EMarketType;
 import com.trader.utility.Utility;

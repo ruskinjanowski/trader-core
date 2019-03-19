@@ -3,7 +3,7 @@ package com.trader.model;
 import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 
-import com.trader.controller.api.Api;
+import com.trader.api.Api;
 
 public class EMarketType {
 

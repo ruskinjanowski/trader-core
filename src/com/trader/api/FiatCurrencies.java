@@ -1,4 +1,4 @@
-package com.trader.controller.api;
+package com.trader.api;
 
 import org.openexchangerates.oerjava.OpenExchangeRates;
 import org.openexchangerates.oerjava.exceptions.UnavailableExchangeRateException;

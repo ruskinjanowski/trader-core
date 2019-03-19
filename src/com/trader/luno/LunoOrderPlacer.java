@@ -8,8 +8,8 @@ import org.knowm.xchange.dto.Order.OrderType;
 import org.knowm.xchange.dto.trade.LimitOrder;
 import org.knowm.xchange.luno.service.LunoTradeService;
 
+import com.trader.api.Api;
 import com.trader.client.EventClientEndpoint;
-import com.trader.controller.api.Api;
 import com.trader.luno.CancelResult.CancelStatus;
 import com.trader.model.EMarketType;
 import com.trader.model.Order;

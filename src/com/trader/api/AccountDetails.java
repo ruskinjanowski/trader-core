@@ -1,4 +1,4 @@
-package com.trader.controller.api;
+package com.trader.api;
 
 import java.io.File;
 import java.io.FileInputStream;

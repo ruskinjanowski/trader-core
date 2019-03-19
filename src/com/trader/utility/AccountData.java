@@ -9,7 +9,7 @@ import org.knowm.xchange.dto.account.AccountInfo;
 import org.knowm.xchange.dto.account.Wallet;
 import org.knowm.xchange.service.account.AccountService;
 
-import com.trader.controller.api.Api;
+import com.trader.api.Api;
 import com.trader.model.EMarketType;
 
 /**
