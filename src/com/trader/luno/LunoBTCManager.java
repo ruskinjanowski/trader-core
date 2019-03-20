@@ -12,14 +12,14 @@ import org.knowm.xchange.dto.Order.OrderType;
 import com.trader.client.MarketEvents;
 import com.trader.client.MarketEvents.IOrderListener;
 import com.trader.client.MarketEvents.ISpreadListener;
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 import com.trader.model.Order;
 import com.trader.model.OrderCancelled;
 import com.trader.utility.Utility;
 
 public class LunoBTCManager implements IOrderListener, ISpreadListener {
 
-	private final EMarketType market;
+	private final MarketType market;
 	private final SpreadPricing pricing;
 
 	final AccWallet wallet;
@@ -35,7 +35,7 @@ public class LunoBTCManager implements IOrderListener, ISpreadListener {
 
 	private final List<IOrderFilled> listeners = new ArrayList<>();
 
-	public LunoBTCManager(EMarketType market, AccWallet wallet) {
+	public LunoBTCManager(MarketType market, AccWallet wallet) {
 		super();
 		this.market = market;
 		this.wallet = wallet;

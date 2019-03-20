@@ -13,7 +13,7 @@ import org.knowm.xchange.dto.trade.MarketOrder;
 
 import com.trader.api.Api;
 import com.trader.definitions.TraderFolders.ProgramName;
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 import com.trader.utility.Utility;
 
 public class BitstampTrading {
@@ -34,7 +34,7 @@ public class BitstampTrading {
 
 		String id;
 		try {
-			id = Api.getTradeService(EMarketType.USD_BTC).placeMarketOrder(marketOrder);
+			id = Api.getTradeService(MarketType.USD_BTC).placeMarketOrder(marketOrder);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -49,7 +49,7 @@ public class BitstampTrading {
 		}
 
 		try {
-			Collection<org.knowm.xchange.dto.Order> order = Api.getTradeService(EMarketType.USD_BTC).getOrder(id);
+			Collection<org.knowm.xchange.dto.Order> order = Api.getTradeService(MarketType.USD_BTC).getOrder(id);
 			System.out.println(order);
 			return order.iterator().next();
 		} catch (IOException e) {
@@ -70,7 +70,7 @@ public class BitstampTrading {
 		BigDecimal bd = new BigDecimal(volume_BTC).setScale(7, RoundingMode.HALF_DOWN);
 		try {
 
-			String res = Api.getAccountService(EMarketType.USD_BTC).withdrawFunds(Currency.BTC, bd, btcReceiveAdd);
+			String res = Api.getAccountService(MarketType.USD_BTC).withdrawFunds(Currency.BTC, bd, btcReceiveAdd);
 			System.out.println("Bitstamp withdraw funds: " + res + " volume BTC: " + volume_BTC);
 		} catch (IOException e) {
 			e.printStackTrace();

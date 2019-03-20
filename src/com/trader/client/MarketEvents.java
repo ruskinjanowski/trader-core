@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 import com.trader.model.Events;
 import com.trader.model.Order;
 import com.trader.model.OrderCancelled;
@@ -16,11 +16,11 @@ import com.trader.model.Spread;
 
 public class MarketEvents {
 
-	private static final Map<EMarketType, MarketEvents> me = new HashMap<>();
+	private static final Map<MarketType, MarketEvents> me = new HashMap<>();
 	static {
-		createMarketEvents(EMarketType.ZAR_BTC);
-		createMarketEvents(EMarketType.EUR_BTC);
-		createMarketEvents(EMarketType.NGN_BTC);
+		createMarketEvents(MarketType.ZAR_BTC);
+		createMarketEvents(MarketType.EUR_BTC);
+		createMarketEvents(MarketType.NGN_BTC);
 	}
 
 	/**
@@ -36,14 +36,14 @@ public class MarketEvents {
 	private Spread spread;
 
 	final TaskQueue taskQueue = new TaskQueue();
-	public final EMarketType market;
+	public final MarketType market;
 
-	private static void createMarketEvents(EMarketType market) {
+	private static void createMarketEvents(MarketType market) {
 		MarketEvents m = new MarketEvents(market);
 		me.put(market, m);
 	}
 
-	private MarketEvents(EMarketType market) {
+	private MarketEvents(MarketType market) {
 		this.market = market;
 	}
 
@@ -56,11 +56,11 @@ public class MarketEvents {
 		LOW, HIGH
 	}
 
-	public static MarketEvents get(EMarketType t) {
+	public static MarketEvents get(MarketType t) {
 		return me.get(t);
 	}
 
-	public static Spread getSpread(EMarketType t) {
+	public static Spread getSpread(MarketType t) {
 		return me.get(t).spread;
 	}
 

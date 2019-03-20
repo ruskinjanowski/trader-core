@@ -3,7 +3,7 @@ package com.trader.api;
 import org.openexchangerates.oerjava.OpenExchangeRates;
 import org.openexchangerates.oerjava.exceptions.UnavailableExchangeRateException;
 
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 
 /**
  * Class to expose fiat currencies API.
@@ -51,8 +51,8 @@ public class FiatCurrencies {
 
 	// public static final CurrencyPair ZAR_NGN = new CurrencyPair(Currency.NGN,
 	// Currency.ZAR);
-	public static double getZARrX(EMarketType X) {
-		if (X.equals(EMarketType.NGN_BTC)) {
+	public static double getZARrX(MarketType X) {
+		if (X.equals(MarketType.NGN_BTC)) {
 			try {
 				return ZARrUSD() / NGNrUSD();
 			} catch (UnavailableExchangeRateException e) {

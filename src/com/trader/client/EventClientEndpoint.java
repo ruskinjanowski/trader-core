@@ -19,7 +19,7 @@ import org.glassfish.tyrus.client.ClientManager;
 
 import com.google.gson.Gson;
 import com.trader.definitions.TraderURIs;
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 import com.trader.model.Events;
 import com.trader.model.OrderListenRequest;
 
@@ -29,19 +29,19 @@ public class EventClientEndpoint {
 	private Logger logger = Logger.getLogger(this.getClass().getName());
 	private static final Gson gson = new Gson();
 
-	private static final Map<EMarketType, Set<Session>> sessionMap = new HashMap<>();
+	private static final Map<MarketType, Set<Session>> sessionMap = new HashMap<>();
 
 	static {
-		sessionMap.put(EMarketType.ZAR_BTC, new HashSet<>());
-		sessionMap.put(EMarketType.EUR_BTC, new HashSet<>());
-		sessionMap.put(EMarketType.NGN_BTC, new HashSet<>());
+		sessionMap.put(MarketType.ZAR_BTC, new HashSet<>());
+		sessionMap.put(MarketType.EUR_BTC, new HashSet<>());
+		sessionMap.put(MarketType.NGN_BTC, new HashSet<>());
 	}
 
 	/**
 	 * When a new instance of this class gets made, what this is at that time will
 	 * get saved and events passed on to that.
 	 */
-	private static EMarketType proxy = EMarketType.ZAR_BTC;
+	private static MarketType proxy = MarketType.ZAR_BTC;
 
 	final MarketEvents eventsHandler = MarketEvents.get(proxy);
 
@@ -80,7 +80,7 @@ public class EventClientEndpoint {
 	 * @param olr the order to receive events for
 	 * @param market the market on which the order was placed
 	 */
-	public static void sendListenRequest(OrderListenRequest olr, EMarketType market) {
+	public static void sendListenRequest(OrderListenRequest olr, MarketType market) {
 		Set<Session> sessions = sessionMap.get(market);
 		for (Session session : sessions) {
 			try {
@@ -92,10 +92,10 @@ public class EventClientEndpoint {
 	}
 
 	public static void startClient() {
-		startClient(EMarketType.ZAR_BTC);
+		startClient(MarketType.ZAR_BTC);
 	}
 
-	public static void startClient(EMarketType market) {
+	public static void startClient(MarketType market) {
 
 		proxy = market;
 

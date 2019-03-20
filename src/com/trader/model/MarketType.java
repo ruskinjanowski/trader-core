@@ -1,16 +1,15 @@
 package com.trader.model;
 
-import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 
 import com.trader.api.Api;
 
-public class EMarketType {
+public class MarketType {
 
-	public static final EMarketType ZAR_BTC = new EMarketType(ExchangeName.LUNO, CurrencyPair.BTC_ZAR);
-	public static final EMarketType EUR_BTC = new EMarketType(ExchangeName.LUNO, CurrencyPair.BTC_EUR);
-	public static final EMarketType NGN_BTC = new EMarketType(ExchangeName.LUNO, Api.BTC_NGN);
-	public static final EMarketType USD_BTC = new EMarketType(ExchangeName.LUNO, CurrencyPair.BTC_USD);
+	public static final MarketType ZAR_BTC = new MarketType(ExchangeName.LUNO, CurrencyPair.BTC_ZAR);
+	public static final MarketType EUR_BTC = new MarketType(ExchangeName.LUNO, CurrencyPair.BTC_EUR);
+	public static final MarketType NGN_BTC = new MarketType(ExchangeName.LUNO, Api.BTC_NGN);
+	public static final MarketType USD_BTC = new MarketType(ExchangeName.BITSTAMP, CurrencyPair.BTC_USD);
 
 	public enum ExchangeName {
 		LUNO, BITSTAMP, FOREX
@@ -19,14 +18,10 @@ public class EMarketType {
 	public final ExchangeName name;
 	public final CurrencyPair pair;
 
-	public EMarketType(ExchangeName name, CurrencyPair pair) {
+	public MarketType(ExchangeName name, CurrencyPair pair) {
 		super();
 		this.name = name;
 		this.pair = pair;
-	}
-
-	public Currency getCounterCurrency() {
-		return pair.counter;
 	}
 
 	@Override
@@ -51,7 +46,7 @@ public class EMarketType {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EMarketType other = (EMarketType) obj;
+		MarketType other = (MarketType) obj;
 		if (name != other.name)
 			return false;
 		if (pair == null) {

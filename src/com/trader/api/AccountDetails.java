@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 
 public class AccountDetails {
 
@@ -105,12 +105,12 @@ public class AccountDetails {
 
 	}
 
-	public LunoDetails getLunoDetails(EMarketType market) {
-		if (market.equals(EMarketType.ZAR_BTC)) {
+	public LunoDetails getLunoDetails(MarketType market) {
+		if (market.equals(MarketType.ZAR_BTC)) {
 			return lunoZAR;
-		} else if (market.equals(EMarketType.EUR_BTC)) {
+		} else if (market.equals(MarketType.EUR_BTC)) {
 			return lunoEUR;
-		} else if (market.equals(EMarketType.NGN_BTC)) {
+		} else if (market.equals(MarketType.NGN_BTC)) {
 			return lunoNGN;
 		} else {
 			throw new IllegalArgumentException();

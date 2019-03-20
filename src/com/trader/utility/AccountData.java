@@ -10,7 +10,7 @@ import org.knowm.xchange.dto.account.Wallet;
 import org.knowm.xchange.service.account.AccountService;
 
 import com.trader.api.Api;
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 
 /**
  * Amounts available on various Exchange accounts
@@ -25,7 +25,7 @@ public class AccountData {
 	private static Map<AccountService, AccountInfo> infosMap = new HashMap<>();
 	private static Map<AccountService, Long> updateMap = new HashMap<>();
 
-	public static double getBalance(EMarketType market, Currency currency, double lag_m) {
+	public static double getBalance(MarketType market, Currency currency, double lag_m) {
 		AccountService account = Api.getAccountService(market);
 
 		Long prevTime = updateMap.get(account);
@@ -49,10 +49,10 @@ public class AccountData {
 	}
 
 	public static double getLunoZAR(double lag) {
-		return getBalance(EMarketType.ZAR_BTC, Currency.ZAR, lag);
+		return getBalance(MarketType.ZAR_BTC, Currency.ZAR, lag);
 	}
 
 	public static double getLunoBTC(double lag) {
-		return getBalance(EMarketType.ZAR_BTC, Currency.BTC, lag);
+		return getBalance(MarketType.ZAR_BTC, Currency.BTC, lag);
 	}
 }

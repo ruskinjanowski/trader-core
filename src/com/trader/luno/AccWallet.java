@@ -6,10 +6,16 @@ import java.util.Map;
 import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.dto.Order.OrderType;
 
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 import com.trader.utility.AccountData;
 import com.trader.utility.Utility;
 
+/**
+ * Class to keep track of the funds in a Wallet.
+ * 
+ * @author ruski
+ *
+ */
 public class AccWallet {
 
 	private double btc;
@@ -23,20 +29,18 @@ public class AccWallet {
 	 */
 	Map<String, OrderTracker> orders = new HashMap<>();
 
-	public AccWallet(EMarketType market) {
+	public AccWallet(MarketType market) {
 		btc = AccountData.getBalance(market, market.pair.base, 1);
 		counter = AccountData.getBalance(market, market.pair.counter, 1);
 		avaibleCounter = counter;
 		availableBTC = btc;
-		System.out
-				.println("Volumes: " + Currency.BTC + ": " + btc + " " + market.getCounterCurrency() + ": " + counter);
+		System.out.println("Volumes: " + Currency.BTC + ": " + btc + " " + market.pair.counter + ": " + counter);
 
 	}
 
 	/**
 	 * 
-	 * @param o
-	 *            order with the volume that got filled
+	 * @param o order with the volume that got filled
 	 * @param type
 	 */
 	public synchronized void orderComplete(OrderTracker t) {

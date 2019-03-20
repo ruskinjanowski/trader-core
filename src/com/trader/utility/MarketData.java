@@ -12,7 +12,7 @@ import org.openexchangerates.oerjava.exceptions.UnavailableExchangeRateException
 import com.trader.api.Api;
 import com.trader.api.FiatCurrencies;
 import com.trader.client.MarketEvents;
-import com.trader.model.EMarketType;
+import com.trader.model.MarketType;
 import com.trader.model.Spread;
 
 /**
@@ -89,13 +89,13 @@ public class MarketData {
 	}
 
 	public synchronized MarketPrice getZARrBTC(double lag_min) {
-		Spread spread = MarketEvents.getSpread(EMarketType.ZAR_BTC);
+		Spread spread = MarketEvents.getSpread(MarketType.ZAR_BTC);
 		if (spread != null) {
 			ZARrBTC = new MarketPrice(spread.priceBid, spread.priceAsk, new Date());
 		} else if (ZARrBTC == null || ZARrBTC.olderThan(lag_min)) {
 			Ticker ticker;
 			try {
-				ticker = Api.getMarketDataService(EMarketType.ZAR_BTC).getTicker(CurrencyPair.BTC_ZAR);
+				ticker = Api.getMarketDataService(MarketType.ZAR_BTC).getTicker(CurrencyPair.BTC_ZAR);
 			} catch (IOException e) {
 				e.printStackTrace();
 				return ZARrBTC;
@@ -111,7 +111,7 @@ public class MarketData {
 		if (USDrBTC == null || USDrBTC.olderThan(lag_min)) {
 			Ticker ticker;
 			try {
-				ticker = Api.getMarketDataService(EMarketType.USD_BTC).getTicker(CurrencyPair.BTC_USD);
+				ticker = Api.getMarketDataService(MarketType.USD_BTC).getTicker(CurrencyPair.BTC_USD);
 				USDrBTC = new MarketPrice(ticker.getBid().doubleValue(), ticker.getAsk().doubleValue(),
 						ticker.getTimestamp());
 			} catch (IOException e) {
@@ -125,7 +125,7 @@ public class MarketData {
 		if (EURrBTC == null || EURrBTC.olderThan(lag_min)) {
 			Ticker ticker;
 			try {
-				ticker = Api.getMarketDataService(EMarketType.USD_BTC).getTicker(CurrencyPair.BTC_EUR);
+				ticker = Api.getMarketDataService(MarketType.USD_BTC).getTicker(CurrencyPair.BTC_EUR);
 				EURrBTC = new MarketPrice(ticker.getBid().doubleValue(), ticker.getAsk().doubleValue(),
 						ticker.getTimestamp());
 			} catch (IOException e) {
