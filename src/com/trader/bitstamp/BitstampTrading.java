@@ -61,9 +61,9 @@ public class BitstampTrading {
 	}
 
 	public static void sendToLuno(double volume_BTC) {
-		String btcReceiveAdd = "181tasGykzVSARD56Jkn2h5TTm25LVSsdL";
+		String btcReceiveAdd = "3A3y9fBYahsngZ4uF3AcqvVnbPjiCUKne6";
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}

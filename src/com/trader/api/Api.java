@@ -17,6 +17,7 @@ import org.knowm.xchange.service.account.AccountService;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 import org.knowm.xchange.service.trade.TradeService;
 
+import com.trader.api.AccountDetails.BitstampDetails;
 import com.trader.api.AccountDetails.LunoDetails;
 import com.trader.definitions.TraderFolders;
 import com.trader.definitions.TraderFolders.ProgramName;
@@ -47,7 +48,7 @@ public class Api {
 		}
 	}
 
-	private static void addLunoExchange(LunoDetails details, MarketType market) {
+	public static void addLunoExchange(LunoDetails details, MarketType market) {
 		if (details != null) {
 			ExchangeSpecification exSpec = new LunoExchange().getDefaultExchangeSpecification();// BitstampExchange().getDefaultExchangeSpecification();
 			exSpec.setApiKey(details.key);
@@ -55,6 +56,15 @@ public class Api {
 			Exchange luno = ExchangeFactory.INSTANCE.createExchange(exSpec);
 			put(market, luno);
 		}
+	}
+
+	public static void addBitstampExchange(BitstampDetails details) {
+		ExchangeSpecification exSpec = new BitstampExchange().getDefaultExchangeSpecification();
+		exSpec.setUserName(details.username);
+		exSpec.setApiKey(details.key);
+		exSpec.setSecretKey(details.secret);
+		Exchange bitstamp = ExchangeFactory.INSTANCE.createExchange(exSpec);
+		put(MarketType.USD_BTC, bitstamp);
 	}
 
 	private static void put(MarketType market, Exchange exchange) {

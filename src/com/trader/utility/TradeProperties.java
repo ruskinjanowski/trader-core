@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * 
+ *
  * Utility class which can be extended to load a .properties file.
  *
  */
-public abstract class TradeProperties {
+public abstract class TradeProperties
+{
 
 	protected final Properties props = new Properties();
 
