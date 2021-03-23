@@ -51,7 +51,7 @@ public class SomeSpread extends SpreadPricing {
 		if (market.equals(MarketType.ZAR_BTC)) {
 			return new SomeSpread(market, 3, 1);
 		} else if (market.equals(MarketType.EUR_BTC)) {
-			return new SomeSpread(market, 0.1, 0.01);
+			return new SomeSpread(market, 5, 0.01);
 		} else if (market.equals(MarketType.NGN_BTC)) {
 			return new SomeSpread(market, 10, 1);
 		} else {

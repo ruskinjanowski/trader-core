@@ -29,6 +29,10 @@ public class TraderFolders {
 		return f;
 	}
 
+	public static File getBase() {
+		return BASE;
+	}
+
 	private static File getBaseFolder() {
 		File f = new File("");
 		Path p = Paths.get(f.getAbsolutePath());

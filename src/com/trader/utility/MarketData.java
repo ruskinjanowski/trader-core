@@ -7,6 +7,7 @@ import java.util.Date;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.marketdata.Ticker;
 import org.knowm.xchange.luno.dto.LunoException;
+import org.openexchangerates.oerjava.CurrConv;
 import org.openexchangerates.oerjava.exceptions.UnavailableExchangeRateException;
 
 import com.trader.api.Api;
@@ -18,7 +19,7 @@ import com.trader.model.Spread;
 /**
  * Current Exchange rates on various exchanges. Everything should be static as
  * there is every only one current state of the various exchanges.
- * 
+ *
  */
 public class MarketData {
 
@@ -29,6 +30,7 @@ public class MarketData {
 	}
 
 	private MarketPrice ZARrUSD;
+	private MarketPrice ZARrEUR;
 	private MarketPrice ZARrNGN;
 	/** Luno BTC price */
 	private MarketPrice ZARrBTC;
@@ -74,6 +76,33 @@ public class MarketData {
 		return diff_perc;
 	}
 
+	public synchronized double getDiffEur_perc(double lag_min) {
+
+		getZARrEUR(lag_min);
+
+		getZARrBTC(lag_min);
+
+		getEURrBTC(lag_min);
+
+		double mZARrBTC = ZARrBTC.mid();
+		double mEURrBTC = EURrBTC.mid();
+		double mZARrEUR = ZARrEUR.mid();
+
+		double cryto_ZARrEUR = mZARrBTC / mEURrBTC;
+		double diff_perc = (cryto_ZARrEUR - mZARrEUR) / mZARrEUR * 100;
+
+		// round
+		BigDecimal bd = new BigDecimal(diff_perc);
+		bd = bd.setScale(3, BigDecimal.ROUND_HALF_UP);
+		diff_perc = bd.doubleValue();
+
+		if (lastDiff != diff_perc) {
+			lastDiff = diff_perc;
+		}
+
+		return diff_perc;
+	}
+
 	public synchronized MarketPrice getZARrUSD(double lag_min) {
 		if (ZARrUSD == null || ZARrUSD.olderThan(lag_min)) {
 			double zu;
@@ -86,6 +115,18 @@ public class MarketData {
 			ZARrUSD = new MarketPrice(zu, zu, new Date());
 		}
 		return ZARrUSD;
+	}
+
+	public synchronized MarketPrice getZARrEUR(double lag_min) {
+		lag_min = Math.max(lag_min, 30);//don't overload api
+		if (ZARrEUR == null || ZARrEUR.olderThan(lag_min)) {
+			Double eurZar = CurrConv.getEurZar();
+			if (eurZar != null) {
+				ZARrEUR = new MarketPrice(eurZar, eurZar, new Date());
+			}
+
+		}
+		return ZARrEUR;
 	}
 
 	public synchronized MarketPrice getZARrBTC(double lag_min) {
@@ -121,11 +162,12 @@ public class MarketData {
 		return USDrBTC;
 	}
 
-	public synchronized MarketPrice getUERrBTC(double lag_min) {
+	public synchronized MarketPrice getEURrBTC(double lag_min) {
 		if (EURrBTC == null || EURrBTC.olderThan(lag_min)) {
 			Ticker ticker;
 			try {
-				ticker = Api.getMarketDataService(MarketType.USD_BTC).getTicker(CurrencyPair.BTC_EUR);
+				ticker = Api.getMarketDataService(MarketType.EUR_BTC)
+						.getTicker(CurrencyPair.BTC_EUR);
 				EURrBTC = new MarketPrice(ticker.getBid().doubleValue(), ticker.getAsk().doubleValue(),
 						ticker.getTimestamp());
 			} catch (IOException e) {

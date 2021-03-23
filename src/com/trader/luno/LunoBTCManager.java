@@ -61,7 +61,7 @@ public class LunoBTCManager implements IOrderListener, ISpreadListener {
 		placeOrderIfNeeded();
 	}
 
-	public void tradeBTC(double volume) {
+	public void buyBTC(double volume) {
 		setWantedBTC(wallet.getBtc() + volume);
 	}
 

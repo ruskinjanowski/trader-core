@@ -109,7 +109,7 @@ public class MarketEvents {
 				public void run() {
 					try {
 						s.remove(e.spread);
-						System.out.println("Skipped: " + s.size() + " current: " + e.spread);
+						//System.out.println("Skipped: " + s.size() + " current: " + e.spread);
 
 						for (ISpreadListener l : listenersSpreadHigh) {
 							l.spreadChanged();
