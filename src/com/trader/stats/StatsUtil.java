@@ -43,7 +43,6 @@ public class StatsUtil
 		}
 	}
 
-
 	static StatsHistory loadHistory() {
 		try {
 			String json = new String(Files.readAllBytes(saveFile.toPath()), StandardCharsets.UTF_8);
@@ -73,21 +72,18 @@ public class StatsUtil
 		@Override
 		public void run() {
 			while (true) {
-			try {
+				try {
 					Thread.sleep(2 * 60 * 1000);
-			}
-			catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			System.out.println("loopinmg");
-			double diffEur_perc = MarketData.INSTANCE.getDiffEur_perc(1.0);
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				double diffEur_perc = MarketData.INSTANCE.getDiffEur_perc(1.0);
 				statsHistory.addPoint(diffEur_perc);
 
 				saveHistory(statsHistory);
-				System.out.println("caluctlated: " + statsHistory.calculateSd());
 			}
 		}
 	}
-
 
 }

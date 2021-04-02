@@ -97,7 +97,10 @@ public class MarketEvents {
 	Set<Spread> s = new HashSet<>();
 
 	public void processEvents(Events e) {
-		System.out.println(new Date() + " " + e);
+		if (spread == null) {
+			System.out.println(new Date() + " " + e);
+		}
+
 		if (e.spread != null) {
 			// process spread changed events on a queue, this means some spread changed
 			// events might be dropped. However if a batch of events come in the first and

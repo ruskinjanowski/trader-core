@@ -66,6 +66,7 @@ public class LunoOrderPlacer implements IOrderPlacer {
 
 	@Override
 	public Order placeOrder(double volume, OrderType type, double price) {
+		volume = round(volume);
 		LimitOrder lo = new LimitOrder(type, Api.format(volume), market.pair, "123456733", new Date(),
 				Api.format(price));
 		String sTime = LunoBTCManager.getMilliTime();
@@ -86,4 +87,12 @@ public class LunoOrderPlacer implements IOrderPlacer {
 		return placed;
 	}
 
+	private static double round(double d) {
+		double n = 1e4;
+		return Math.round(d * n) / n;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(Api.format(0.015390));
+	}
 }
